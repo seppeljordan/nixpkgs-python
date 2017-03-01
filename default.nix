@@ -51,6 +51,11 @@ in createSets [
     description = "Pyramid framework and its extensions.";
   }
 
+  { name = "plone";
+    maintainers = [ maintainers.unknown ];
+    description = "Plone CMS and its addons.";
+  }
+
   { name = "science";
     maintainers = [ maintainers.unknown ];
     description = "Science related python packages.";

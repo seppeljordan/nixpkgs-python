@@ -56,6 +56,14 @@ pyramid:
 	nix-build -A pyramid -o result-pyramid
 
 
+plone:
+	cd plone/ && \
+		$(PYPI2NIX) -v \
+					-V 2.7 \
+					-b buildout.cfg
+	nix-build -A plone -o result-plone
+
+
 science:
 	cd science/ && \
 		$(PYPI2NIX) -v \
@@ -81,6 +89,7 @@ static:
 	homeassistant \
 	pelican \
 	pyramid \
+	plone \
 	science \
 	pypi2nix \
 	static
