@@ -4,6 +4,7 @@ if [ $TRAVIS_PULL_REQUEST = "false" -a \
      $TRAVIS_BRANCH = "master" -a \
      $TRAVIS_REPO_SLUG = "garbas/nixpkgs-python" \
    ]; then
+    echo "Pushing built nar files to binary cache"
     rsync -avh --ignore-existing /tmp/pypi2nix/cache/wheel/*.whl travis@garbas.si:/var/travis/wheels_cache/
     rsync -avh --ignore-existing $TRAVIS_BUILD_DIR/nars/ travis@garbas.si:/var/travis/nixpkgs-python/
     if [[ -n `git diff --exit-code` ]]; then
@@ -19,4 +20,6 @@ if [ $TRAVIS_PULL_REQUEST = "false" -a \
 	git commit -m "Travis update for $PKGS_SET [ci skip]";
 	git push git@github.com:garbas/nixpkgs-python.git HEAD:$TRAVIS_BRANCH;
     fi
+else
+    echo "Don't push built nar files to binary cache because this is not the master branch of the main repository"
 fi
